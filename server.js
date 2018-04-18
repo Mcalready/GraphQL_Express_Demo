@@ -70,10 +70,31 @@ const root= {
       return myDB[id];
   },
 
+  //  以上查询数据时的url传参格式
+  // {
+  //    user(id: "0") {
+  //       name
+  //       sex
+  //       age
+  //       describe
+  //     }
+  //   }
+
+
   //获取全部用户数据
   users: () => {
       return myDB;
   },
+
+  //  以上查询数据时的url传参格式
+  // {
+  //    users {
+  //       name
+  //       sex
+  //       age
+  //       describe
+  //     }
+  //   }
 
   //添加用户信息
   addUser: ({userInfo}) => {
@@ -87,7 +108,7 @@ const root= {
       return user;
   }
 
-  //  添加或者更新数据时的url传参格式
+  //  以上添加或者更新数据时的url传参格式
   //  mutation{
   //     	addUser(userInfo: {
   //         name: "gui.zhang.son",
@@ -103,7 +124,7 @@ const root= {
   //    }
 };
 
-//
+//API: http://localhost:4000/graphql/userInfo
 router.use('/userInfo', graphqlHTTP({
   schema: schema,     //传入scheme
   rootValue: root,    //传入数据
