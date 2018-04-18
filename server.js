@@ -37,6 +37,7 @@ const myDB = [{
 //定义schema模型
 //查询数据需要在Query下建模型
 //增加或者更新数据需要在Mutation下建模型
+//多个不同的变更接受相同的输入参数时候，用input关键字来定义输入类型
 const schema = buildSchema(` 
     type User{  
       name: String  
@@ -74,19 +75,6 @@ const root= {
       return myDB;
   },
 
-  // mutation{
-  // 	addUser(userInfo: {
-  //     name: "gui.zhang",
-  //     sex: "1",
-  //     age: "2",
-  //     describe: "11111"
-  //   }) {
-  // 	  name
-  // 	  sex
-  // 	  age
-  // 	  describe
-  // 	}
-  // }
   //添加用户信息
   addUser: ({userInfo}) => {
       const user={
@@ -98,6 +86,21 @@ const root= {
       myDB.push(user);
       return user;
   }
+
+  //  添加或者更新数据时的url传参格式
+  //  mutation{
+  //     	addUser(userInfo: {
+  //         name: "gui.zhang.son",
+  //         sex: "male",
+  //         age: "10",
+  //         describe: "son is son,father is father"
+  //       }) { //更新成功后返回的数据
+  //    	  name
+  //     	  sex
+  //     	  age
+  //    	  describe
+  //     	}
+  //    }
 };
 
 //
